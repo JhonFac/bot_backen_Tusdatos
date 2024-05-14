@@ -30,7 +30,7 @@ Being a Python project, the following conventions are followed:
 
 - Clone or Fork the project.
 - Copy **.env.example** to **.env**. It will be used as environment variables source.
-- Inside Docker/app folders of ecommerce-service and delivery-services:
+- Inside Docker/app folders of casos-service and delivery-services:
 * Copy **.env.example** to **.env**. It will be used as environment variables source.
 
 Run ```docker-compose``` command inside **docker-python** folder.
@@ -42,7 +42,7 @@ Run ```docker-compose``` command inside **docker-python** folder.
 * Stoping the services: ```docker-compose stop```
 
 By default the microservices will run under the following ports:
-- ecommerce-service: 8000
+- casos-service: 8000
 - delivery-service: 8001
 
 Check the **.env.example** file to change these or any other params.
@@ -50,21 +50,3 @@ Check the **.env.example** file to change these or any other params.
 #### Note
 The Flask application will probably throw an exception the first time, because it will try to connect to the MySQL service that is still initializing for the first time; in this case wait for MySQL to fully initialize first and then run the command `docker-compose restart $NAME_SERVICE` in another terminal to restart the crashed service.
 
-
-### Testing ⚙️
-
-
-To run manual tests, the `req.http` file is included with requests to localhost. Install `REST Client` for Visual Studio Code or` RESTer HTTP Client` for Sublime Text to be able to perform file requests from the same text editor.
-
-To run the tests:
-
-- Have the services running using `docker-compose up`.
-- In another console, run `docker exec ecommerce-service python -m pytest -rP`.
-
-The `-rP` flag is optional, and is used to display in the console the `print()` done during the tests, otherwise `pytest` will hide them, only showing them in case the test has failed.
-
-Repository tests write data to container databases, but write them to temporary tables or collections with the suffix "\ _test" that are deleted once they are finished, so as not to carry the actual data. Bear in mind that in the case of Firestore there is no data persistence yet; if the service is lowered and raised again, the previous data is lost.
-
-### Autores ✒️
-
-* **Autor:** Hans Auzian C., hans.auzian@enviame.io
