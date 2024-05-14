@@ -1,0 +1,89 @@
+########################################## Servicio para crear ordenes
+
+@authToken = Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTcxNTY2NDMxNSwianRpIjoiMWMxYzEyYWQtZDc1OC00MDE5LWFlYWYtZjFlMGZmZWU5OWIzIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6ImFkbWluIiwibmJmIjoxNzE1NjY0MzE1LCJjc3JmIjoiZjhjYTcwZTYtN2NmMy00M2NjLWFkN2YtMTU0NzVhYjk5OThhIiwiZXhwIjoxNzE1NjY2MTE1fQ.xfJ1CIRw_tlMIbjTtBy6ZU-h2PpjNw6P7VYDZbaeEKQ
+
+
+########################################## Login user
+
+POST http://localhost:8000/user/login
+Content-Type: application/json
+
+{
+    "username": "Jhon",
+    "password": "1234"
+}
+
+########################################## servicios casos
+GET http://localhost:8000/casos
+Authorization: {{authToken}}
+
+### Obtener delivery por ID.
+GET http://localhost:8000/casos/1
+Authorization: {{authToken}}
+
+### Crear delivery.
+POST http://localhost:8000/casos
+Authorization: {{authToken}}
+Content-Type: application/json
+
+{
+    "no_causa": "1234",
+    "fecha": "2024-05-13",
+    "hora": "14:30",
+    "tipificacion": "Tipo de caso",
+    "contenido": "Texto largo que puede superar los 1000 caracteres. Asegúrate de incluir aquí toda la información relevante."
+}
+
+
+### Actualizar delivery.
+PUT http://localhost:8000/casos/1
+Authorization: {{authToken}}
+Content-Type: application/json
+
+{
+    "title": "Mi nuevo delivery (edición 2)",
+    "author": "Hans A.C.",
+    "pages": 110
+}
+
+### Borrar delivery.
+DELETE http://localhost:8000/casos/1
+Authorization: {{authToken}}
+
+
+
+########################################## Obtener todos los usuarios
+GET http://localhost:8000/user
+Authorization: {{authToken}}
+
+### Obtener usuario por ID
+GET http://localhost:8000/user/1
+Authorization: {{authToken}}
+
+### Crear un nuevo usuario
+POST http://localhost:8000/user
+Authorization: {{authToken}}
+Content-Type: application/json
+# role ["admin", "user"],
+{
+    "username": "Jhon",
+    "password_hash": "1234",
+    "role": "admin"
+}
+
+### Actualizar un usuario por ID
+PUT http://localhost:8000/user/1
+Authorization: {{authToken}}
+Content-Type: application/json
+
+{
+    "username": "William",
+    "role": "12345"
+}
+
+###
+
+### Borrar un usuario por ID
+DELETE http://localhost:8000/user/1
+Authorization: {{authToken}}
+###

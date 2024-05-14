@@ -1,0 +1,25 @@
+version: "3"
+services:
+  
+  casos-app:
+  
+    build: ${CASOS_SERVICE_PATH}/Docker/app/.
+  
+    container_name: ${CASOS_SERVICE_NAME}
+  
+    env_file:
+      - ${CASOS_SERVICE_PATH}/Docker/app/.env
+      - .env
+    
+    environment:
+      - SQL_ALCHEMY_HOST=${MYSQL_NAME}
+      - SQL_ALCHEMY_DATABASE=${MYSQL_DATABASE}
+
+    command: ["gunicorn", "-b", "0.0.0.0:${PORT}", "src.main:app", "--reload", "-t 60"]
+  
+    volumes:
+      - ${CASOS_SERVICE_PATH}/src:/app/src
+      
+    ports:
+      - ${CASOS_APP_PORT}:8000
+    
