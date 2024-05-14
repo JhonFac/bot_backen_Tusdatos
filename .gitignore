@@ -1,0 +1,13 @@
+# Directories
+__pycache__/
+db-storage/
+.vscode/
+.pytest_cache/
+
+# Files
+*pyc
+.directory
+.env
+
+Explicacion_prueba.mp4
+video.mp4
